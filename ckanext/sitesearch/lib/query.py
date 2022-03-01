@@ -9,6 +9,11 @@ from ckan.lib.search.query import VALID_SOLR_PARAMETERS, solr_literal
 
 log = logging.getLogger(__name__)
 
+entity_type = [ "datasets", "users", "organizations", "groups", "pages", "news" ]
+
+ENTITIES_PARAMETERS = set([ "{}.{}".format(e,p) for e in entity_type for p in VALID_SOLR_PARAMETERS ])
+VALID_SOLR_PARAMETERS = VALID_SOLR_PARAMETERS.union(ENTITIES_PARAMETERS)
+
 
 def query_organizations(query):
 
